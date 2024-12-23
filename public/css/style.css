@@ -1,0 +1,115 @@
+html {
+    height: 100%;
+    scroll-behavior: smooth;
+    background-color: #121214;
+}
+.card {
+    border: none;
+    width: 265px;
+    height: 388px;
+}
+
+.card img {
+    height: 100%;
+    width: 100%;
+}
+
+.disabled-link {
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.card a.text-decoration-none {
+    height: 388px;
+}
+
+.card-title {
+    text-decoration: none;
+}
+
+.custom-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.image-container {
+    position: relative;
+}
+
+.custom-card .hover-info {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    top: 0;
+    right: -100%; /* Initially hidden on the right */
+    width: 50%; /* Adjust this width as needed */
+    height: 100%;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.image-container:hover .hover-info {
+    right: 0; /* Slide in from the right */
+    opacity: 1;
+}
+
+.custom-image {
+    transition: transform 0.3s ease-in-out;
+}
+
+.image-container:hover .custom-image {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+.card-body .card-title {
+    color: inherit; /* Ensure the title inherits the default color */
+    transition: color 0.3s ease-in-out; /* Smooth transition */
+}
+
+.card-body .card-title:hover {
+    color: #28a745 !important; /* Force green color on hover */
+}
+
+.image-container {
+    position: relative;
+}
+
+.price-tag {
+    top: 10px; /* Khoảng cách từ trên cùng */
+    right: 10px; /* Khoảng cách từ bên phải */
+    z-index: 1;
+}
+
+.mb-3{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.col-12{
+    padding: 20px 0 20px 0;
+}
+
+.card.shadow-sm{
+    width: 100%;
+}
+
+.img-custom {
+    height: 100%; /* Full height */
+    object-fit: cover; /* Maintain aspect ratio and cover the div */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.col-md-8{
+    padding-bottom: 100px;
+}
+
+.card-title.mb-3{
+    font-size: 2.25rem;
+}
+
+
+
