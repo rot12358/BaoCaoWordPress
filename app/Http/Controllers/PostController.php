@@ -57,8 +57,18 @@ class PostController extends Controller
 
     public function showDetail($id)
     {
-        $post = Post::findOrFail($id); // Find the post by its ID
-        return view('detail', ['post' => $post]); // Ensure this points to the detail view
+        // Find the post by its ID
+        $post = Post::findOrFail($id);
+
+        // Fetch posts from the same category, excluding the current post
+        $relatedPosts = $post->category->posts()->where('id', '!=', $id)->take(6)->get();
+
+        // Pass the post, related posts, and image URL to the view
+        return view('detail', [
+            'post' => $post,
+            'relatedPosts' => $relatedPosts,
+            'anhgioithieu' => $post->anhgioithieu // Pass the image URL
+        ]);
     }
 
     public function edit($id)

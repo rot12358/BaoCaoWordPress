@@ -32,11 +32,11 @@
     }
   </script>
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 
 <body style="background-color:#121214;">
   @include('layouts.header')
-
   @section('detail')
   @show
   @section('content1')

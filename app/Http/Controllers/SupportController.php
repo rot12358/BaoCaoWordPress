@@ -24,7 +24,7 @@ class SupportController extends Controller
         ]);
 
         // Gửi email
-        Mail::to('mynamerot11@gmail.com')->send(new SupportRequest(
+        Mail::to('lamt14865@gmail.com')->send(new SupportRequest(
             $request->name,
             $request->email,
             $request->phone,

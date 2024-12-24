@@ -1,0 +1,87 @@
+/* General navbar styling */
+.navbar {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    background-color: #f8f9fa; /* Light background color */
+    border-radius: 8px; /* Slight rounded corners */
+    padding: 10px 20px; /* Add some spacing */
+    font-family: 'Roboto', sans-serif; /* Clean font */
+}
+
+/* Navbar links */
+.navbar .nav-link {
+    color: #343a40; /* Dark text color */
+    padding: 10px 15px; /* Space around links */
+    font-weight: 500; /* Slightly bold */
+    transition: color 0.3s ease, background-color 0.3s ease; /* Smooth transitions */
+}
+
+.navbar .nav-link:hover {
+    color: #007bff; /* Blue on hover */
+    background-color: #e9ecef; /* Light background on hover */
+    border-radius: 5px; /* Rounded hover effect */
+}
+
+/* Active state for nav links */
+.navbar .nav-link.active {
+    background-color: #007bff;
+    color: #fff; /* White text for active link */
+    border-radius: 5px;
+}
+
+/* Dropdowns */
+.navbar .dropdown-menu {
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Light border */
+}
+
+.navbar .dropdown-item {
+    color: #343a40;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar .dropdown-item:hover {
+    background-color: #f1f3f5; /* Lighter hover effect */
+    color: #007bff;
+}
+
+/* Toggler button */
+.navbar-toggler {
+    border: none; /* Remove border */
+    outline: none; /* Remove focus outline */
+}
+
+.navbar-toggler-icon {
+    color: #343a40; /* Dark icon color */
+}
+
+/* User dropdown */
+#navbarDropdown {
+    color: #343a40;
+}
+
+#navbarDropdown:hover {
+    color: #007bff; /* Blue on hover */
+}
+
+.dropdown-menu-end .dropdown-item {
+    color: #343a40;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-menu-end .dropdown-item:hover {
+    background-color: #f1f3f5;
+}
+
+/* Mobile styling adjustments */
+@media (max-width: 992px) {
+    .navbar {
+        padding: 15px;
+    }
+
+    .nav-link {
+        padding: 8px 12px;
+    }
+}

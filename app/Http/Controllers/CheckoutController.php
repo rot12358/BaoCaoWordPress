@@ -21,33 +21,48 @@ class CheckoutController extends Controller
 
     public function placeOrder(Request $request)
     {
-        // Lấy giỏ hàng của người dùng
-        $cartItems = CartItem::where('user_id', auth()->id())->with('post')->get(); // Lấy thông tin sản phẩm từ cart
+        // Validate thông tin người dùng
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|numeric',
+            'address' => 'required|string|max:255',
+        ]);
 
-        // Tính tổng giá trị đơn hàng
-        $total = $cartItems->sum(fn($item) => $item->quantity * $item->post->gia);
+        // Lấy thông tin giỏ hàng
+        $cartItems = CartItem::where('user_id', auth()->id())->with('post')->get();
+
+        // Kiểm tra nếu giỏ hàng trống
+        if ($cartItems->isEmpty()) {
+            return redirect()->route('cart.view')->with('error', 'Giỏ hàng của bạn đang trống!');
+        }
 
         // Tạo đơn hàng mới
         $order = Order::create([
             'user_id' => auth()->id(),
-            'gia' => $total, // Gán tổng giá trị vào order
+            'gia' => $cartItems->sum(function ($item) {
+                return $item->quantity * $item->post->gia;
+            }),
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
         ]);
 
         // Thêm các sản phẩm vào đơn hàng
         foreach ($cartItems as $item) {
-            // Lưu từng sản phẩm vào order_items
             $order->orderItems()->create([
-                'post_id' => $item->post_id,  // ID sản phẩm
-                'quantity' => $item->quantity, // Số lượng
-                'gia' => $item->post->gia, // Giá mỗi sản phẩm
+                'post_id' => $item->post_id,
+                'quantity' => $item->quantity,
+                'gia' => $item->post->gia,
             ]);
         }
 
         // Xóa các sản phẩm trong giỏ hàng sau khi đã đặt hàng
         CartItem::where('user_id', auth()->id())->delete();
 
-        // Chuyển hướng người dùng đến trang thành công
-        return redirect()->route('order.success')->with('success', 'Đặt hàng thành công!');
+        // Chuyển hướng đến trang thanh toán thành công
+        return redirect()->route('admin.orders.success')->with('success', 'Đặt hàng thành công!');
     }
     public function updateQuantity(Request $request, $itemId)
     {

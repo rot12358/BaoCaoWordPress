@@ -20,6 +20,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th>#</th>
                 <th>Product Name</th>
                 <th>Quantity</th>
                 <th>Price</th>
@@ -27,13 +28,15 @@
             </tr>
         </thead>
         <tbody>
+            @php $count = 1 @endphp
             @foreach($order->orderItems as $item)
-                <tr>
-                    <td>{{ $item->post->tentruyen }}</td> <!-- Hiển thị tên sản phẩm -->
-                    <td>{{ $item->quantity }}</td> <!-- Số lượng -->
-                    <td>{{ number_format($item->gia, 2) }} VND</td> <!-- Giá mỗi sản phẩm -->
-                    <td>{{ number_format($item->quantity * $item->gia, 2) }} VND</td> <!-- Tổng tiền cho sản phẩm -->
-                </tr>
+            <tr>
+                <td>{{$count++}}</td>
+                <td>{{ $item->post->tentruyen }}</td> <!-- Hiển thị tên sản phẩm -->
+                <td>{{ $item->quantity }}</td> <!-- Số lượng -->
+                <td>{{ number_format($item->gia, 2) }} VND</td> <!-- Giá mỗi sản phẩm -->
+                <td>{{ number_format($item->quantity * $item->gia, 2) }} VND</td> <!-- Tổng tiền cho sản phẩm -->
+            </tr>
             @endforeach
         </tbody>
     </table>

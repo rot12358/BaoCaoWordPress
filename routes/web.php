@@ -23,6 +23,7 @@ use App\Models\Category;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', function () {
     $categories = Category::all();
     return view('category', compact('categories'));
@@ -56,7 +57,6 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     // Trang Orders
     Route::get('orders', [OrderController::class, 'index'])->name('admin.orders.index');
     Route::get('orders/{id}', [OrderController::class, 'show'])->name('admin.orders.show');  // Hiển thị chi tiết đơn hàng
-    Route::get('/order/success', [OrderController::class, 'success'])->name('order.success');
     //Thêm sửa xoá Sản Phẩm
     Route::get('/posts/create', [PostController::class, 'create'])->name('admin.posts.create');
     Route::post('/sanpham', [PostController::class, 'store'])->name('admin.posts.store');
@@ -87,12 +87,19 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function () {
 Route::get('admin/change-role/{userId}/{role}', [AdminController::class, 'changeRole']);
 Route::post('/admin/{user}/make-admin', [AdminController::class, 'makeAdmin'])->name('admin.makeAdmin');
 Route::post('/admin/{user}/make-user', [AdminController::class, 'makeUser'])->name('admin.makeUser');
+Route::delete('/admin/user/{id}', [AdminController::class, 'deleteUser'])->name('admin.deleteUser');
 // Create User Admin
 Route::get('admin/users/create', [UserController::class, 'create'])->name('admin.users.create');
 Route::post('admin/users', [UserController::class, 'store'])->name('admin.users.store');
-// Profile 
-Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile.show');
-Route::put('/profile', [ProfileController::class, 'updateProfile'])->name('profile.update');
+// Các route có middleware 'auth' đảm bảo người dùng đã đăng nhập
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'showProfile'])->name('profile.show');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    // Hiển thị danh sách đơn hàng
+    Route::get('/profile/orders', [ProfileController::class, 'showOrders'])->name('profile.orders');
+    // Hiển thị chi tiết đơn hàng
+    Route::get('/profile/orders/{id}', [ProfileController::class, 'orderDetails'])->name('profile.orderDetails');
+});
 //logout
 Route::post('/logout', function () {
     Auth::logout();
@@ -116,6 +123,7 @@ Route::resource('post', PostController::class);
 // Route::get('/posts', 'PostController@index')->name('posts.index');
 // phân loại thể loại
 Route::get('/filter-category/{categoryId}', [CategoryController::class, 'filterByCategory']);
+Route::get('/category/{categoryId}', [PostController::class, 'categoryProducts'])->name('category.posts');
 
 // Giỏ hàng
 Route::middleware('auth')->group(function () {
@@ -127,12 +135,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'checkout'])->name('checkout.index');
     Route::post('/checkout', [CheckoutController::class, 'placeOrder'])->name('checkout.placeOrder');
     Route::patch('/checkout/update-quantity/{item}', [CheckoutController::class, 'updateQuantity'])->name('checkout.updateQuantity');
+    Route::get('/order-success', function () {
+        return view('admin.orders.success'); // File Blade sẽ hiển thị thông báo đặt hàng thành công
+    })->name('admin.orders.success');
 });
 
 Route::get('/detail/{id}', [PostController::class, 'showDetail'])->name('detail.show');
-
-
-
-
-
-

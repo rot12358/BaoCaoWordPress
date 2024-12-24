@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,17 @@ class UserController extends Controller
 
         return redirect()->route('admin.users.index')->with('success', 'Tạo tài khoản thành công!');
     }
+    public function deleteUser($id)
+    {
+        $user = User::findOrFail($id);
 
+        // Bảo vệ tài khoản admin chính
+        if ($user->role === 'admin') {
+            return redirect()->back()->with('error', 'Không thể xóa tài khoản admin.');
+        }
 
+        $user->delete();
+
+        return redirect()->back()->with('success', 'Xóa tài khoản thành công.');
+    }
 }
-

@@ -29,14 +29,13 @@
 
 </head>
 
-<body>
+<body style="background-color:#121214;">
     <header class="header d-none d-lg-block">
         <!-- place navbar here -->
         <nav class="navbar navbar-expand-lg navbar-dark header__navbar p-md-0">
             <div class="container">
                 <a class="navbar-brand" href="/">
-                    <img src="{{ asset('images/logo.png') }}" alt="Logo" srcset="" class="img-fluid"
-                        style="width: 80px;">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="img-fluid" style="width: 80px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -51,8 +50,7 @@
                                 Truyện
                             </a>
                             <ul class="dropdown-menu dropdown-menu-custom">
-                                <li><a href="/sanpham" class="dropdown-item" href="category.html">Tất cả loại truyện</a>
-                                </li>
+                                <li><a href="/sanpham" class="dropdown-item">Tất cả loại truyện</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -61,15 +59,13 @@
                                 Hỗ Trợ
                             </a>
                             <ul class="dropdown-menu dropdown-menu-custom">
-                                <li><a class="dropdown-item" href="/support">Liên hệ
-                                    </a>
-                                </li>
+                                <li><a class="dropdown-item" href="/support">Liên hệ</a></li>
                             </ul>
                         </li>
                     </ul>
+
                     <form class="d-flex header__form-search" action="" method="GET">
-                        <input class="form-control search-story" type="text" placeholder="Tìm kiếm" name="key_word"
-                            value="">
+                        <input class="form-control search-story" type="text" placeholder="Tìm kiếm" name="key_word" value="">
                         <div class="col-12 search-result shadow no-result d-none">
                             <div class="card text-white bg-light">
                                 <div class="card-body p-0">
@@ -82,28 +78,31 @@
                             </div>
                         </div>
                         <button class="btn" type="submit">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="1em"
-                                viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                                <path
-                                    d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z">
-                                </path>
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                                <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"></path>
                             </svg>
                         </button>
                     </form>
+
                     <ul class="navbar-nav ms-auto">
+                        <!-- Cart Button -->
+                        <li class="nav-item">
+                            <a href="/cart" class="nav-link">
+                                <img src="{{ asset('images/cart.png') }}" alt="Cart">
+                            </a>
+                        </li>
                         @if(Auth::check())
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown">
-                                Hello, {{ Auth::user()->name }}
+                                <img src="{{ asset('images/profile.jpg') }}" alt="Profile" style="width: 50px; height: 50px; border-radius: 50%;">
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="{{ route('profile.show') }}">Profile</a></li>
-
+                                <li><a class="dropdown-item" href="{{ route('profile.show') }}">Trang cá nhân</a></li>
+                                <li><a class="dropdown-item" href="{{ route('profile.orders') }}">Đơn hàng đã đặt</a></li>
                                 <!-- Admin specific link -->
                                 @if(Auth::user()->role == 'admin')
-                                <li><a class="dropdown-item" href="{{ route('admin.home') }}">Admin Dashboard</a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.home') }}">Trang Admin</a></li>
                                 @endif
-
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -117,7 +116,7 @@
                         </li>
                         @else
                         @if (Route::has('login'))
-                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Đăng nhập</a></li>
                         @endif
                         @endif
                     </ul>
@@ -125,7 +124,6 @@
             </div>
         </nav>
     </header>
-
     <!-- Nội dung chính của trang -->
     <div class="container">
         @yield('content')

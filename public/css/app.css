@@ -1130,44 +1130,6 @@ main {
     }
 }
 
-.header {
-    background-color: rgba(255, 255, 255, 0); /* Header trong suốt */
-    position: fixed; /* Giữ header cố định khi cuộn */
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000; /* Đảm bảo header nằm trên các phần tử khác */
-}
-
-.header .navbar {
-    background-color: rgba(
-        0,
-        0,
-        0,
-        0.5
-    ); /* Đặt một màu nền tối với độ trong suốt cho navbar */
-    backdrop-filter: blur(10px); /* Làm mờ nền dưới header nếu cần */
-}
-
-.header a,
-.header svg,
-.header .form-check-label {
-    color: #fff !important; /* Màu chữ trắng để dễ đọc trên nền trong suốt */
-}
-
-.header .navbar-toggler {
-    border: none; /* Ẩn viền nút toggler */
-}
-
-.header .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-    /* Đổi màu icon thành trắng */
-}
-
-body {
-    padding-top: 80px; /* Đảm bảo phần nội dung không bị che bởi header cố định */
-}
-
 .dropdown-menu-custom.show {
     background-color: #000;
 }
@@ -1180,9 +1142,9 @@ footer .container {
     background-color: #343a40;
 }
 
-.mb-3 {
+/* .mb-3 {
     padding: 0 50px 0 50px;
-}
+} */
 
 .g-4 {
     padding: 0 60px 0 60px;
@@ -1547,3 +1509,142 @@ label {
     width: 100%;
 }
 
+/* Header */
+
+.header {
+    background-color: rgba(255, 255, 255, 0); /* Header trong suốt */
+    position: fixed; /* Giữ header cố định khi cuộn */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Đảm bảo header nằm trên các phần tử khác */
+}
+
+.header .navbar {
+    background-color: rgba(
+        0,
+        0,
+        0,
+        0.5
+    ); /* Đặt một màu nền tối với độ trong suốt cho navbar */
+    backdrop-filter: blur(10px); /* Làm mờ nền dưới header nếu cần */
+}
+
+.header a,
+.header svg,
+.header .form-check-label {
+    color: #fff !important; /* Màu chữ trắng để dễ đọc trên nền trong suốt */
+    transition: color 0.3s ease; /* Hiệu ứng chuyển đổi màu mượt mà */
+}
+
+.header a:hover,
+.header svg:hover,
+.header .form-check-label:hover {
+    color: #32cd32 !important; /* Đổi màu chữ thành xanh lá khi di chuột */
+}
+
+.header .navbar-toggler {
+    border: none; /* Ẩn viền nút toggler */
+}
+
+.header .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    /* Đổi màu icon thành trắng */
+}
+
+body {
+    padding-top: 80px; /* Đảm bảo phần nội dung không bị che bởi header cố định */
+}
+
+.header .navbar-nav {
+    margin-left: 0; /* Xóa khoảng cách bên trái */
+    justify-content: flex-start; /* Đặt các mục điều hướng về phía bên trái */
+    padding-left: 0; /* Xóa phần padding mặc định nếu có */
+}
+
+.header .nav-item {
+    margin-right: 15px; /* Khoảng cách giữa các mục điều hướng */
+}
+
+.header .navbar-collapse {
+    display: flex;
+    justify-content: space-between; /* Căn giữa nội dung bên trái và bên phải */
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+.header .navbar-nav {
+    margin-left: 0;
+    justify-content: flex-start; /* Đặt các mục điều hướng về phía bên trái */
+    padding-left: 0;
+}
+
+.header .header__form-search {
+    margin-left: auto; /* Đẩy form tìm kiếm về phía bên phải */
+    max-width: 400px; /* Giới hạn chiều rộng của ô tìm kiếm */
+    width: 100%; /* Đảm bảo ô tìm kiếm chiếm đủ không gian */
+}
+
+.header .nav-item {
+    margin-right: 15px; /* Khoảng cách giữa các mục điều hướng */
+}
+
+/* Ẩn menu con mặc định */
+.header .dropdown-menu {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Hiệu ứng khi ẩn hiện */
+    transform: translateY(10px); /* Hiệu ứng di chuyển khi dropdown xuất hiện */
+    backdrop-filter: blur(10px); /* Làm mờ nền của dropdown */
+    background-color: rgba(
+        18,
+        18,
+        20,
+        0.8
+    ) !important; /* Nền trong suốt với độ mờ nhẹ */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Viền nhẹ trong suốt */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ để tạo chiều sâu */
+    border-radius: 8px; /* Bo góc mềm mại cho menu */
+}
+
+/* Hiển thị menu khi di chuột vào mục dropdown */
+.header .nav-item.dropdown.show .dropdown-menu {
+    margin-top: 20px;
+    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0); /* Menu hiện lên từ vị trí ban đầu */
+    position: absolute;
+    top: 100%; /* Vị trí menu con ngay dưới mục cha */
+    left: 0;
+    z-index: 1000;
+}
+
+/* Hiệu ứng xuất hiện mượt mà */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Đổi màu chữ khi di chuột vào menu con */
+.header .dropdown-menu a {
+    color: #fff; /* Màu chữ mặc định của dropdown */
+    padding: 8px 20px; /* Khoảng cách trong giữa các mục menu */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Hiệu ứng khi di chuột vào */
+}
+
+/* Hiệu ứng khi di chuột vào các mục con */
+.header .dropdown-menu a:hover {
+    background-color: rgba(50, 205, 50, 0.2); /* Đổi nền nhẹ với màu xanh lá */
+    color: #32cd32; /* Đổi màu chữ thành xanh lá khi di chuột vào */
+}
+
+.container.mt-5{
+    padding: 0 100px 0 100px;
+}

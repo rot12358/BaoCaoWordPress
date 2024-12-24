@@ -225,3 +225,31 @@ $(document).ready(function () {
         }, 50000);
     }  
 })
+
+document.querySelectorAll('.header .nav-item.dropdown').forEach(function (dropdown) {
+    dropdown.addEventListener('mouseenter', function () {
+        hideAllDropdowns(); // Ẩn tất cả các dropdown khác trước khi hiển thị dropdown mới
+        dropdown.classList.add('show');
+        dropdown.querySelector('.dropdown-menu').classList.add('show');
+    });
+
+    dropdown.addEventListener('mouseleave', function () {
+        setTimeout(function () {
+            if (!dropdown.matches(':hover')) { // Kiểm tra nếu chuột đã rời hoàn toàn
+                dropdown.classList.remove('show');
+                dropdown.querySelector('.dropdown-menu').classList.remove('show');
+            }
+        }, 200); // Thời gian trễ trước khi ẩn menu (200ms)
+    });
+});
+
+// Hàm để ẩn tất cả các dropdown
+function hideAllDropdowns() {
+    document.querySelectorAll('.header .nav-item.dropdown').forEach(function (dropdown) {
+        dropdown.classList.remove('show');
+        dropdown.querySelector('.dropdown-menu').classList.remove('show');
+    });
+}
+
+
+

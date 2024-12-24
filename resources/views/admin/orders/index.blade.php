@@ -1,47 +1,55 @@
-<!-- resources/views/admin/orders/index.blade.php -->
-
 @extends('admin.app')
 
 @section('content')
 <div class="container">
-    <h2>Order Management</h2>
+    <h2>Tổng danh sách đơn hàng </h2>
     @if(session('success'))
-        <div class="alert alert-success">{{ session('success') }}</div>
+    <div class="alert alert-success">{{ session('success') }}</div>
     @endif
     <table class="table">
         <thead>
             <tr>
-                <th>Order ID</th>
-                <th>User</th>
-                <th>Total Price</th>
-                <th>Status</th>
-                <th>Actions</th>
+                <th>#</th>
+                <th>Tài khoản</th>
+                <th>Tên Tài Khoản</th>
+                <th>Tổng tiền</th>
+                <th>Trạng thái đơn hàng</th>
+                <th>Chi tiết</th>
             </tr>
         </thead>
         <tbody>
+            @php $count = 1 @endphp
             @foreach($orders as $order)
-                <tr>
-                    <td>
-                        <a href="{{ route('admin.orders.show', $order->id) }}">{{ $order->id }}</a>
-                        <!-- Liên kết đến trang chi tiết -->
-                    </td>
-                    <td>{{ $order->user->name }}</td>
-                    <td>{{ number_format($order->gia, 2) }} VND</td>
-                    <td>
-                        <span class="badge bg-{{ $order->status == 'pending' ? 'warning' : 'success' }}">
-                            {{ ucfirst($order->status) }}
-                        </span>
-                    </td>
-                    <td>
-                        <form action="{{ route('admin.orders.updateStatus', $order->id) }}" method="POST">
-                            @csrf
-                            @method('PATCH')
-                            <button type="submit" class="btn btn-primary">
-                                {{ $order->status == 'pending' ? 'Mark as Finished' : 'Mark as Pending' }}
-                            </button>
-                        </form>
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    {{ $count++ }}
+                </td>
+                <td>{{ $order->user->name }}</td>
+                <td>{{ $order->user->email }}</td>
+                <td>{{ number_format($order->gia, 2) }} VND</td>
+                <td>
+                    <!-- Dropdown để chọn trạng thái -->
+                    <form action="{{ route('admin.orders.updateStatus', $order->id) }}" method="POST">
+                        @csrf
+                        @method('PATCH')
+                        <select name="status" class="form-select" onchange="this.form.submit()">
+                            <option value="đang xử lý" {{ $order->status == 'đang xử lý' ? 'selected' : '' }}>Đang xử lý
+                            </option>
+                            <option value="xử lý" {{ $order->status == 'xử lý' ? 'selected' : '' }}>Xử lý</option>
+                            <option value="chờ giao" {{ $order->status == 'chờ giao' ? 'selected' : '' }}>Chờ giao
+                            </option>
+                            <option value="đang giao" {{ $order->status == 'đang giao' ? 'selected' : '' }}>Đang giao
+                            </option>
+                            <option value="đã đến" {{ $order->status == 'đã đến' ? 'selected' : '' }}>Đã đến</option>
+                            <option value="hoàn thành" {{ $order->status == 'hoàn thành' ? 'selected' : '' }}>Hoàn thành
+                            </option>
+                            <option value="thất bại" {{ $order->status == 'thất bại' ? 'selected' : '' }}>Thất bại
+                            </option>
+                        </select>
+                    </form>
+                <td> <a href="{{ route('admin.orders.show', $order->id) }}">Xem Thêm</td>
+                </td>
+            </tr>
             @endforeach
         </tbody>
     </table>

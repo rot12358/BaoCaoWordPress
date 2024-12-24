@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->decimal('gia', 10, 2);
-            $table->enum('status', ['pending', 'finished'])->default('pending');
+            $table->enum('status', ['đang xử lý', 'xử lý', 'chờ giao','đang giao','đã đến', 'hoàn thành','thất bại'])->default('đang xử lý');
             $table->timestamps();
         });
     }

@@ -1,12 +1,17 @@
-@extends('layouts.app')
+@extends('master.master')
 
 @section('content')
 <div class="container">
+    <div class="mb-4">
+        <a href="{{route('user.home')}}" class="btn btn-primary btn-lg">
+            <i class="bi bi-arrow-left-circle"></i> Mua sắm thêm
+        </a>
+    </div>
     <h2>Giỏ hàng</h2>
-    <table class="table">
+    <table class="table table-dark table-striped mt-4">
         <thead>
             <tr>
-                <th>Sản phẩm</th>
+                <th>Tên truyện</th>
                 <th>Hình ảnh</th>
                 <th>Số lượng</th>
                 <th>Giá</th>
@@ -17,7 +22,9 @@
             @php $total = 0; @endphp
             @foreach ($cartItems as $item)
                         <tr>
-                            <td>{{ $item->post->tentruyen }}</td>
+                            <td>
+                                <span>{{ $item->post->tentruyen }}</span> <!-- Canh giữa tên sản phẩm -->
+                            </td>
                             <td>
                                 <img src="{{ $item->post->anhgioithieu }}" alt="{{ $item->post->tentruyen }} "
                                     style="width: 100px; height: auto;">
@@ -40,7 +47,7 @@
                             <td>
                                 <!-- Tính giá tiền sản phẩm -->
                                 @php 
-                                                                                            $itemTotal = $item->post->gia * $item->quantity;
+                                                                                                                            $itemTotal = $item->post->gia * $item->quantity;
                                     $total += $itemTotal;
                                 @endphp
                                 {{ number_format($itemTotal, 0, ',', '.') }} VND
@@ -59,7 +66,7 @@
     </table>
 
     <!-- Nút thanh toán -->
-    <div class="d-flex justify-content-start">
+    <div class="d-flex justify-content-end">
         <a href="{{ route('checkout.index') }}" class="btn btn-success btn-lg">Thanh toán</a>
     </div>
 </div>

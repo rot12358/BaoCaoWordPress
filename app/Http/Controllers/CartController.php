@@ -52,7 +52,7 @@ class CartController extends Controller
         if ($item) {
             $item->delete();
         }
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Bạn chắc chắn chắn xoá!');;
     }
 
     // Cập nhật số lượng sản phẩm

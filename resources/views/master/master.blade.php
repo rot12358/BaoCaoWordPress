@@ -38,9 +38,9 @@
   <header>@include('master.header')</header>
   @section('sachtruyen')
   @show
-  @section('content')
-  @show
   @section('sanpham')
+  @show
+  @section('profile')
   @show
   @section('edit')
   @show

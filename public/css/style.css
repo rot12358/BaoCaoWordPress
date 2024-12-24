@@ -111,5 +111,227 @@ html {
     font-size: 2.25rem;
 }
 
+.card-body.d-flex.flex-column{
+    text-align: center;
+}
+
+.card.h-100.shadow-sm.position-relative.custom-card{
+    background-color: #121214;
+}
+
+/* Checkout */
+/* Đảm bảo các ô có nội dung canh giữa */
+.table td {
+    vertical-align: middle; /* Căn giữa nội dung theo chiều dọc */
+    text-align: center; /* Căn giữa nội dung theo chiều ngang */
+}
+
+/* Đảm bảo tên sản phẩm nằm ở giữa, nếu cần */
+.table td.text-center span {
+    display: block; /* Đảm bảo tên sản phẩm là block element */
+    padding-top: 50%; /* Đẩy xuống giữa của ô */
+    transform: translateY(-50%); /* Điều chỉnh vị trí về giữa theo chiều dọc */
+}
+.table th {
+    text-align: center;
+}
+.container h2{
+    color: #fff;
+}
+
+/* Login */
+/* Basic reset and font settings */
+
+/* General styles */
+
+.limiter {
+    width: 100%;
+    margin: 0 auto;
+    background-color: #f7f7f7;
+}
+
+.container-login100 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 15px;
+}
+
+/* Form Styles */
+.login100-form-title {
+    font-size: 24px;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+input.form-control {
+    border-radius: 8px;
+    box-shadow: none;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+input.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
+}
+
+/* Invalid Feedback */
+.invalid-feedback {
+    color: #e74c3c;
+}
+
+/* Button Styles */
+.login100-form-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.login100-form-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Link and Text Styles */
+.btn-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+/* Remember Me & Forgot Password */
+.form-check-label {
+    font-size: 14px;
+    color: #333;
+}
+
+.login100-form-social-item {
+    background-color: #3b5998;
+    color: white;
+    padding: 12px;
+    border-radius: 50%;
+    margin-right: 10px;
+    font-size: 18px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.login100-form-social-item:hover {
+    background-color: #2d4373;
+}
+
+/* Image section */
+.d-none.d-md-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f7f7f7;
+}
+
+.img-fluid {
+    max-height: 100%;
+    width: auto;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .container-login100 {
+        flex-direction: column;
+    }
+    .col-md-6 {
+        width: 100%;
+        padding: 0;
+    }
+    .login100-form-social-item {
+        font-size: 20px;
+        padding: 10px;
+    }
+}
+
+.login100-form-title.p-b-43{
+    font-size: 30px;
+}
+
+.login100-form.validate-form{
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 20px;
+    width: 500px;
+    height: 650px;
+    margin-left: 25%;
+    padding-top: 80px;
+}
+
+/* Đảm bảo nhãn (label) và input nằm ngang với nhau */
+.row.mb-3 {
+    display: flex;
+    align-items: center;
+}
+
+.row.mb-3 label {
+    text-align: right;
+    width: 30%; /* Chiều rộng nhãn */
+}
+
+.login100-form-btn{
+    width: 300px;
+}
+
+.col-md-9{
+    width: 300px;
+}
+
+.login100-form-title.p-b-43{
+    margin-top: 50px;
+}
+
+.category-section.mt-5 h3{
+    padding-left: 60px;
+}
 
 
+.mb-3 .card-text{
+    font-size: 18px;
+    color: #ffffff;
+}
+
+p.card-text.text-white.mb-4{
+    font-size: 16px;
+}
+
+button.btn.btn-primary{
+    margin-right: 20px;
+    border: none;
+    background-color: #139f7b;
+    border-radius: 99px;
+    height: 50px;
+    width: 180px;
+}
+
+a.btn.btn-success{
+    background-color: linear-gradient(0deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2)), var(--White-overlay, hsla(0, 0%, 100%,));
+    border-radius: 99px;
+    height: 50px;
+    width: 180px;
+}
+
+.col-md-8 .card.shadow-sm{
+    border: none;
+}
+
+.hover-info.position-absolute.p-3 .text-white{
+    margin-top: 20px;
+}
